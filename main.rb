@@ -7,6 +7,6 @@ require_relative "./lib/interactors/posts_parser.rb"
 require_relative "./config/mail.rb"
 require_relative "./lib/mailers/feed.rb"
 
-sources = YAML.load_file('./config/sources.yaml')
-posts = PostsParser.new.parse(sources)
+channels = YAML.load_file('./config/channels.yaml')
+posts = PostsParser.new.parse(channels)
 Feed.new.deliver!(posts: posts)

@@ -5,20 +5,17 @@ class PostsParser
     @parser = parser
   end
 
-  def parse(sources)
-    posts = {}
+  def parse(channels)
+    posts = []
 
-    sources.each do |category, channels|
-      posts[category] = []
-      channels.each do |channel|
-        rss = @parser.parse(URI.open(channel).read)
-        items = rss.items.filter do |item|
-          !item.methods.include?(:pubDate) || item.pubDate.to_date == Date.today
-        end
-        posts[category] += items
+    channels.each do |channel|
+      rss = @parser.parse(URI.open(channel).read)
+      items = rss.items.filter do |item|
+        !item.methods.include?(:pubDate) || item.pubDate.to_date == Date.today
       end
+      posts += items
     end
 
-    posts
+    posts.shuffle
   end
 end

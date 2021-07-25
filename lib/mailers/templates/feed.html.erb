@@ -4,15 +4,10 @@
 </head>
 
 <body class="p-4">
-  <% posts.each do |category, items| %>
-  <h3><%= category %></h3>
-  <div class="pb-5">
-  <% items.each do |item| %>
+  <% posts.each do |post| %>
     <article class="border-top border-bottom py-2" style="margin-bottom: -1px;">
-      <a href="<%= item.link %>" class="text-decoration-none"><%= item.title %></a>
+      <a href="<%= post.link %>" class="text-decoration-none"><%= post.title %></a>
     </article>
-  <% end %>
-  </div>
   <% end %>
 </body>
 </html>
