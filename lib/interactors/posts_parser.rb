@@ -16,6 +16,6 @@ class PostsParser
       posts += items
     end
 
-    posts.shuffle
+    posts
   end
 end
